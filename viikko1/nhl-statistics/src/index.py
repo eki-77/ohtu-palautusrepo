@@ -3,7 +3,7 @@ from player_reader import PlayerReader
 
 
 def main():
-    reader = PlayerReader()
+    reader = PlayerReader("https://studies.cs.helsinki.fi/nhlstats/2024-25/players.txt")
     stats = StatisticsService(reader)
     philadelphia_flyers_players = stats.team("PHI")
     top_scorers = stats.top(10)
