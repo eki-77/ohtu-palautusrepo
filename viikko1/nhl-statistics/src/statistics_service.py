@@ -1,10 +1,10 @@
-from player_reader import PlayerReader
+
 
 
 
 class StatisticsService:
-    def __init__(self):
-        reader = PlayerReader()
+    def __init__(self, pr):
+        reader = pr
 
         self._players = reader.get_players()
 

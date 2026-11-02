@@ -1,8 +1,10 @@
 from statistics_service import StatisticsService
+from player_reader import PlayerReader
 
 
 def main():
-    stats = StatisticsService()
+    reader = PlayerReader()
+    stats = StatisticsService(reader)
     philadelphia_flyers_players = stats.team("PHI")
     top_scorers = stats.top(10)
 
