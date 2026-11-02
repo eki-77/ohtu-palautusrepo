@@ -1,5 +1,5 @@
 import unittest
-from statistics_service import StatisticsService
+from statistics_service import StatisticsService, SortBy
 from player import Player
 
 class PlayerReaderStub:
@@ -43,3 +43,17 @@ class TestStatisticsService(unittest.TestCase):
         self.assertEqual(str(pelaajalist[1]), "Lemieux PIT 45 + 54 = 99")
         self.assertEqual(str(pelaajalist[2]), "Yzerman DET 42 + 56 = 98")
         self.assertEqual(str(pelaajalist[3]), "Kurri EDM 37 + 53 = 90")
+    
+    def test_top_pisteiden_perusteella(self):
+        pelaajalista = self.stats.top(1, SortBy.POINTS)
+        self.assertEqual(str(pelaajalista[0]), "Gretzky EDM 35 + 89 = 124")
+    
+    def test_top_maalien_perusteella(self):
+        pelaajalista = self.stats.top(1, SortBy.GOALS)
+        self.assertEqual(str(pelaajalista[0]), "Lemieux PIT 45 + 54 = 99")
+    
+    def test_top_syottojen_perusteella(self):
+        pelaajalista = self.stats.top(1, SortBy.ASSISTS)
+        self.assertEqual(str(pelaajalista[0]), "Gretzky EDM 35 + 89 = 124")
+
+    
