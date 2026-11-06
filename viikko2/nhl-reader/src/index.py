@@ -3,10 +3,14 @@ from rich import print as rprint
 from rich.table import Table
 
 def main():
-    url = "https://studies.cs.helsinki.fi/nhlstats/2024-25/players"
+    season = input("Season (2024-25): ")
+    if season == "":
+        season = "2024-25"
+    url = f"https://studies.cs.helsinki.fi/nhlstats/{season}/players"
+    nationality = input("Nationality (FIN/USA/CAN...): ")
     reader = PlayerReader(url)
     stats = PlayerStats(reader)
-    players = stats.top_scorers_by_nationality("FIN")
+    players = stats.top_scorers_by_nationality(nationality)
 
     taulukko = Table(title="Players")
     taulukko.add_column("name", style="cyan")
