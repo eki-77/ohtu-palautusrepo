@@ -13,6 +13,7 @@ class Player:
     
     def __str__(self):
         return f"{self.name:22}{self.team:20}{self.goals} + {self.assists} = {self.pisteet}"
+        #return [self.name, self.team, self.goals, self.assists, self.pisteet]
 
 class PlayerReader:
     def __init__(self, url):
