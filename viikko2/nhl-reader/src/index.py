@@ -16,8 +16,9 @@ def main():
 
     print("Suomalaiset pelaajat: ")
     print("")
-
+    
     finplayers = list(filter(lambda pelaaja: pelaaja.nationality == 'FIN', players))
+    finplayers.sort(key= lambda player: player.pisteet, reverse=True)
 
     for player in finplayers:
         print(player)
