@@ -1,6 +1,19 @@
-from player import Player, PlayerReader, PlayerStats
 from rich import print as rprint
 from rich.table import Table
+from player import PlayerReader, PlayerStats
+
+def tee_taulukko(players):
+    taulukko = Table(title="Players")
+    taulukko.add_column("name", style="cyan")
+    taulukko.add_column("teams")
+    taulukko.add_column("goals", style="green")
+    taulukko.add_column("assists", style="green")
+    taulukko.add_column("points", style="green")
+    for player in players:
+        taulukko.add_row(player.name, player.team, str(player.goals),
+        str(player.assists), str(player.pisteet))
+    return taulukko
+
 
 def main():
     season = input("Season (2024-25): ")
@@ -11,16 +24,7 @@ def main():
     reader = PlayerReader(url)
     stats = PlayerStats(reader)
     players = stats.top_scorers_by_nationality(nationality)
-
-    taulukko = Table(title="Players")
-    taulukko.add_column("name", style="cyan")
-    taulukko.add_column("teams")
-    taulukko.add_column("goals", style="green")
-    taulukko.add_column("assists", style="green")
-    taulukko.add_column("points", style="green")
-    for player in players:
-        taulukko.add_row(player.name, player.team, str(player.goals), str(player.assists), str(player.pisteet))
-    rprint(taulukko)
+    rprint(tee_taulukko(players))
 
 if __name__ == "__main__":
     main()
