@@ -47,3 +47,8 @@ class PlayerStats:
 
     def ala_tee_mitaan(self):
         return
+
+    def top_goal_scorers(self, how_many):
+        '''palauttaa how_many määrän pelaajia, jotka ovat tehneet eniten maaleja'''
+        sorted_players = sorted(self.players, key=lambda player: player.goals, reverse=True)
+        return sorted_players[:how_many]
