@@ -31,8 +31,8 @@ class PlayerReader:
             players.append(player)
         return players
 
-    def ala_tee_mitaan(self):
-        return
+#    def ala_tee_mitaan(self):
+#        return
 
 
 
