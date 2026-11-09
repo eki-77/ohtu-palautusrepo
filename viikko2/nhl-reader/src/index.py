@@ -15,22 +15,27 @@ def tee_taulukko(players):
     return taulukko
 
 
+def hae_pelaajat(stats):
+    search_type = input("Search by nationality (n) or team (t): ").strip().lower()
+    if search_type == "t":
+        team = input("Team (ANA/BOS/BUF...): ").strip().upper()
+        return stats.top_scorers_by_team(team)
+    if search_type == "n":
+        nationality = input("Nationality (FIN/USA/CAN...): ").strip().upper()
+        return stats.top_scorers_by_nationality(nationality)
+    print("Choose n for nationality or t for team.")
+    return None
+
+
 def main():
     season = input("Season (2024-25): ")
     if season == "":
         season = "2024-25"
     url = f"https://studies.cs.helsinki.fi/nhlstats/{season}/players"
-    search_type = input("Search by nationality (n) or team (t): ").strip().lower()
     reader = PlayerReader(url)
     stats = PlayerStats(reader)
-    if search_type == "t":
-        team = input("Team (ANA/BOS/BUF...): ").strip().upper()
-        players = stats.top_scorers_by_team(team)
-    elif search_type == "n":
-        nationality = input("Nationality (FIN/USA/CAN...): ").strip().upper()
-        players = stats.top_scorers_by_nationality(nationality)
-    else:
-        print("Choose n for nationality or t for team.")
+    players = hae_pelaajat(stats)
+    if players is None:
         return
     rprint(tee_taulukko(players))
 
