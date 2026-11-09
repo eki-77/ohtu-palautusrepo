@@ -20,10 +20,18 @@ def main():
     if season == "":
         season = "2024-25"
     url = f"https://studies.cs.helsinki.fi/nhlstats/{season}/players"
-    nationality = input("Nationality (FIN/USA/CAN...): ")
+    search_type = input("Search by nationality (n) or team (t): ").strip().lower()
     reader = PlayerReader(url)
     stats = PlayerStats(reader)
-    players = stats.top_scorers_by_nationality(nationality)
+    if search_type == "t":
+        team = input("Team (ANA/BOS/BUF...): ").strip().upper()
+        players = stats.top_scorers_by_team(team)
+    elif search_type == "n":
+        nationality = input("Nationality (FIN/USA/CAN...): ").strip().upper()
+        players = stats.top_scorers_by_nationality(nationality)
+    else:
+        print("Choose n for nationality or t for team.")
+        return
     rprint(tee_taulukko(players))
 
 if __name__ == "__main__":

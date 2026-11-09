@@ -45,6 +45,11 @@ class PlayerStats:
         natplayers.sort(key= lambda player: player.pisteet, reverse=True)
         return natplayers
 
+    def top_scorers_by_team(self, team):
+        teamplayers = list(filter(lambda player: player.team == team, self.players))
+        teamplayers.sort(key=lambda player: player.pisteet, reverse=True)
+        return teamplayers
+
     def ala_tee_mitaan(self):
         return
 
