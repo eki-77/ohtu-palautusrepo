@@ -43,9 +43,8 @@ class UserService:
             raise UserInputError("Userame is too short, 3 characters required")
         elif len(password) < 8:
             raise UserInputError("Password is too short, 8 characters required")
-        return
-
-        # toteuta loput tarkastukset tänne ja nosta virhe virhetilanteissa
+        elif password.isalpha():
+            raise UserInputError("Password must contain at least one non-letter character")
 
 
 user_service = UserService()
