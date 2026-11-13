@@ -45,10 +45,3 @@ Register Should Fail With Message
 Register Should Succeed
     Welcome Page Should Be Open
 
-Set Username
-    [Arguments]  ${username}
-    Fill Text  id=username  ${username}
-
-Set Password
-    [Arguments]  ${password}
-    Fill Secret  id=password  $password
