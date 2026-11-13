@@ -45,6 +45,8 @@ class UserService:
             raise UserInputError("Password is too short, 8 characters required")
         elif password.isalpha():
             raise UserInputError("Password must contain at least one non-letter character")
+        elif password != password_confirmation:
+            raise UserInputError("Password and password confirmation do not match")
 
 
 user_service = UserService()

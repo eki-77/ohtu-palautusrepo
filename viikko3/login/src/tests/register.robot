@@ -9,18 +9,21 @@ Test Setup      Reset Application Create User And Go To Register Page
 Register With Valid Username And Password
     Set Username  erkki
     Set Password  newpass123
+    Set Password Confirmation  newpass123
     Click  button >> text=Register
     Register Should Succeed
 
 Register With Too Short Username And Valid Password
     Set Username  a
     Set Password  newpass123
+    Set Password Confirmation  newpass123
     Click  button >> text=Register
     Register Should Fail With Message  Userame is too short, 3 characters required 
 
 Register With Valid Username And Too Short Password
     Set Username  erkki
     Set Password  kone
+    Set Password Confirmation  kone
     Click  button >> text=Register
     Register Should Fail With Message  Password is too short, 8 characters required 
 
@@ -28,30 +31,49 @@ Register With Valid Username And Too Short Password
 Register With Username That Is Already In Use
     Set Username  kalle
     Set Password  newpass123
+    Set Password Confirmation  newpass123
     Click  button >> text=Register
     Register Should Fail With Message  User with username kalle already exists
 
 Register With Password Containing Letters And Digits
     Set Username  erkki
     Set Password  kalle123
+    Set Password Confirmation  kalle123
     Click  button >> text=Register
     Register Should Succeed
 
 Register With Password Containing Letters And Special Character
     Set Username  erkki
     Set Password  kalle#abc
+    Set Password Confirmation  kalle#abc
     Click  button >> text=Register
     Register Should Succeed
 
 Register With Password Containing Only Lowercase Letters
     Set Username  erkki
     Set Password  kallekalle
+    Set Password Confirmation  kallekalle
     Click  button >> text=Register
     Register Should Fail With Error Message
 
 Register With Password Containing Only Uppercase And Lowercase Letters
     Set Username  erkki
     Set Password  KalleKalle
+    Set Password Confirmation  KalleKalle
+    Click  button >> text=Register
+    Register Should Fail With Error Message
+
+Register With Matching Password And Confirmation
+    Set Username  erkki
+    Set Password  newpass123
+    Set Password Confirmation  newpass123
+    Click  button >> text=Register
+    Register Should Succeed
+
+Register With Nonmatching Password And Confirmation
+    Set Username  erkki
+    Set Password  newpass123
+    Set Password Confirmation  different123
     Click  button >> text=Register
     Register Should Fail With Error Message
 
